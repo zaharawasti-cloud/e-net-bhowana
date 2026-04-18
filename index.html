@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-NET Bhowana Internet Services</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin:0;
+    background:#000;
+    color:white;
+}
+
+/* Header */
+header {
+    background:#0a0a0a;
+    padding:25px;
+    text-align:center;
+    border-bottom:2px solid red;
+}
+header h1 {
+    color:red;
+    font-size:36px;
+    margin:0;
+}
+header p {
+    color:#ccc;
+}
+
+/* Navigation */
+nav {
+    background:#111;
+    padding:12px;
+    text-align:center;
+}
+nav a {
+    color:white;
+    margin:12px;
+    text-decoration:none;
+    font-weight:bold;
+}
+nav a:hover {
+    color:red;
+}
+
+/* Sections */
+section {
+    padding:40px;
+    text-align:center;
+}
+
+/* Boxes */
+.box {
+    background:#111;
+    margin:15px;
+    padding:25px;
+    border-radius:10px;
+    border:1px solid red;
+    transition:0.3s;
+}
+.box:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 15px red;
+}
+
+/* Inputs */
+input, textarea {
+    width:90%;
+    padding:12px;
+    margin:10px;
+    border:none;
+    border-radius:5px;
+}
+
+/* Button */
+button {
+    background:red;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    cursor:pointer;
+    border-radius:5px;
+    font-weight:bold;
+}
+button:hover {
+    background:#cc0000;
+}
+
+/* Footer */
+footer {
+    background:#0a0a0a;
+    text-align:center;
+    padding:20px;
+    border-top:2px solid red;
+}
+</style>
+
+<script>
+// Complaint WhatsApp
+function sendComplaint(){
+    var name = document.getElementById("name").value;
+    var msg = document.getElementById("msg").value;
+
+    var url = "https://wa.me/923XXXXXXXXX?text="
+        + "E-NET Bhowana Complaint%0A"
+        + "Name: " + name + "%0A"
+        + msg;
+
+    window.open(url, '_blank');
+}
+
+// Bill Check
+function checkBill(){
+    var id = document.getElementById("userID").value;
+    var result = document.getElementById("result");
+
+    if(id == "101"){
+        result.innerHTML = "E-NET Customer<br>Name: Ali<br>Package: 20 Mbps<br>Bill: Rs. 2500";
+    }
+    else if(id == "102"){
+        result.innerHTML = "E-NET Customer<br>Name: Ahmed<br>Package: 40 Mbps<br>Bill: Rs. 4000";
+    }
+    else{
+        result.innerHTML = "E-NET: User not found!";
+    }
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+    <h1>E-NET Bhowana</h1>
+    <p>High Speed Internet Service Provider</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Packages</a>
+    <a href="#">Services</a>
+    <a href="#">Bill</a>
+    <a href="#">Complaint</a>
+</nav>
+
+<section>
+    <h2>Welcome to E-NET Bhowana</h2>
+    <p>Fast, Reliable & Affordable Internet in Your Area</p>
+</section>
+
+<section>
+    <h2>Our Packages</h2>
+    <div class="box">10 Mbps - Rs.1500</div>
+    <div class="box">20 Mbps - Rs.2500</div>
+    <div class="box">40 Mbps - Rs.4000</div>
+</section>
+
+<section>
+    <h2>Our Services</h2>
+    <div class="box">4G Internet</div>
+    <div class="box">5G High-Speed Internet</div>
+    <div class="box">WiFi Installation</div>
+</section>
+
+<section>
+    <h2>Check Your Bill</h2>
+    <input type="text" id="userID" placeholder="Enter Your User ID">
+    <button onclick="checkBill()">Check Bill</button>
+    <div id="result"></div>
+</section>
+
+<section>
+    <h2>Complaint Form</h2>
+    <input type="text" id="name" placeholder="Your Name">
+    <textarea id="msg" placeholder="Write your complaint"></textarea>
+    <button onclick="sendComplaint()">Send via WhatsApp</button>
+</section>
+
+<section>
+    <h2>Contact & Payment</h2>
+
+    <p>📞 Complaint No: 0300-XXXXXXX</p>
+    <p>📧 aliasgharjoyia237@gmail.com</p>
+    <p>📍 Upper Floor Sharif Medicare, Near Honda Showroom, Main Jhang Road, Bhowana</p>
+
+    <h3>💳 Easypaisa</h3>
+    <p>Send payment to: 03XX-XXXXXXX</p>
+</section>
+
+<footer>
+    <p>© 2026 E-NET Bhowana Internet Services</p>
+</footer>
+
+</body>
+</html>
