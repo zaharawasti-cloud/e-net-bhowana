@@ -6,6 +6,7 @@
 
 <style>
 body {
+
     font-family: Arial;
     margin:0;
     background:#000;
@@ -17,10 +18,10 @@ header {
     background:#0a0a0a;
     padding:25px;
     text-align:center;
-    border-bottom:2px solid red;
+    border-bottom:2px blue;
 }
 header h1 {
-    color:red;
+    color:blue;
     font-size:36px;
     margin:0;
 }
@@ -41,7 +42,7 @@ nav a {
     font-weight:bold;
 }
 nav a:hover {
-    color:red;
+    color:blue;
 }
 
 /* Sections */
@@ -56,12 +57,12 @@ section {
     margin:15px;
     padding:25px;
     border-radius:10px;
-    border:1px solid red;
+    border:1px dark blue;
     transition:0.3s;
 }
 .box:hover {
     transform:scale(1.05);
-    box-shadow:0 0 15px red;
+    box-shadow:0 0 15px blue;
 }
 
 /* Inputs */
@@ -75,7 +76,7 @@ input, textarea {
 
 /* Button */
 button {
-    background:red;
+    background:blue;
     color:white;
     border:none;
     padding:12px 25px;
@@ -84,7 +85,7 @@ button {
     font-weight:bold;
 }
 button:hover {
-    background:#cc0000;
+    background:#0056b3;
 }
 
 /* Footer */
@@ -92,17 +93,21 @@ footer {
     background:#0a0a0a;
     text-align:center;
     padding:20px;
-    border-top:2px solid red;
+    border-top:2px dark blue;
 }
 </style>
-
+</head>
+<body>
+    <header>
+        <img src="logo.jpeg" alt="E NET BHOWANA" width="500">
+</header>
 <script>
 // Complaint WhatsApp
 function sendComplaint(){
     var name = document.getElementById("name").value;
     var msg = document.getElementById("msg").value;
 
-    var url = "https://wa.me/923XXXXXXXXX?text="
+    var url = "https://wa.me/03467749237?text="
         + "E-NET Bhowana Complaint%0A"
         + "Name: " + name + "%0A"
         + msg;
@@ -116,10 +121,10 @@ function checkBill(){
     var result = document.getElementById("result");
 
     if(id == "101"){
-        result.innerHTML = "E-NET Customer<br>Name: Ali<br>Package: 20 Mbps<br>Bill: Rs. 2500";
+        result.innerHTML = "E-NET Customer<br>Name: Ali<br>Package: 20 Mbps<br>Bill: Rs. 3200";
     }
     else if(id == "102"){
-        result.innerHTML = "E-NET Customer<br>Name: Ahmed<br>Package: 40 Mbps<br>Bill: Rs. 4000";
+        result.innerHTML = "E-NET Customer<br>Name: Ahmed<br>Package: 30 Mbps<br>Bill: Rs. 5500";
     }
     else{
         result.innerHTML = "E-NET: User not found!";
@@ -149,11 +154,16 @@ function checkBill(){
     <p>Fast, Reliable & Affordable Internet in Your Area</p>
 </section>
 
-<section>
-    <h2>Our Packages</h2>
-    <div class="box">10 Mbps - Rs.1500</div>
-    <div class="box">20 Mbps - Rs.2500</div>
-    <div class="box">40 Mbps - Rs.4000</div>
+<section>    <h2>Our Packages</h2>
+    <div class="box">10 Mbps - Rs.2200/month</div>
+    <div class="box">20 Mbps - Rs.3200/month</div>
+    <div class="box">30 Mbps - Rs.5500/month</div>
+    <div class="box">3 Mbps - Rs.1000/month</div>
+    <div class="box">4 Mbps - Rs.1200/month</div>
+    <div class="box">5 Mbps - Rs.1500/month</div>
+   <div class="box">25 Mbps - Rs.4500/month</div>
+    <div class="box">15 Mbps - Rs.2700/month</div>
+    <
 </section>
 
 <section>
@@ -180,12 +190,12 @@ function checkBill(){
 <section>
     <h2>Contact & Payment</h2>
 
-    <p>📞 Complaint No: 0300-XXXXXXX</p>
+    <p>📞 Complaint No: 0341-7625739</p>
     <p>📧 aliasgharjoyia237@gmail.com</p>
     <p>📍 Upper Floor Sharif Medicare, Near Honda Showroom, Main Jhang Road, Bhowana</p>
 
     <h3>💳 Easypaisa</h3>
-    <p>Send payment to: 03XX-XXXXXXX</p>
+    <p>Send payment to: 0346-7749237</p>
 </section>
 
 <footer>
