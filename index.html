@@ -202,5 +202,18 @@ function checkBill(){
     <p>© 2026 E-NET Bhowana Internet Services</p>
 </footer>
 
+
+<script>
+function sendviaWhatsapp() {
+    var name = document.getElementById("name").value;
+    var msg = document.getElementById("msg").value;
+    var phonenumber = "923467749237";
+    var url = "https://wa.me" + phonenumber + "?text=" 
+        + "*New Complaint*" + "%0a"
+        + "*Name:* " + name + "%0a"
+        + "*Message:* " + msg;
+    window.open(url, "_blank").focus();
+}
+</script>
 </body>
-</html>
+</html> 
