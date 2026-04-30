@@ -16,14 +16,13 @@
     .box:hover { transform:scale(1.05); box-shadow:0 0 15px blue; }
     input, textarea { width:90%; max-width:400px; padding:12px; margin:10px; border:none; border-radius:5px; background:#222; color:white; }
     button { background:blue; color:white; border:none; padding:12px 25px; cursor:pointer; border-radius:5px; font-weight:bold; }
-    button:hover { background:#0056b3; }
     footer { background:#0a0a0a; text-align:center; padding:20px; border-top:2px solid #0056b3; }
-    #result { margin-top:20px; min-height:50px; }
 </style>
 </head>
 <body>
 
 <header>
+    <img src="logo.gif" alt="E NET BHOWANA" width="300">
     <h1>E-NET Bhowana</h1>
     <p>High Speed Internet Service Provider</p>
 </header>
@@ -31,7 +30,7 @@
 <nav>
     <a href="#">Home</a>
     <a href="#packages">Packages</a>
-    <a href="#bill">Check Bill</a>
+    <a href="#bill">Bill</a>
     <a href="#complaint">Complaint</a>
 </nav>
 
@@ -40,21 +39,25 @@
     <p>Fast, Reliable & Affordable Internet in Your Area</p>
 </section>
 
-<!-- BILL SEARCH SECTION -->
+<!-- BILL SEARCH -->
 <section id="bill">
     <h2>Check Your Bill</h2>
-    <input type="text" id="userID" placeholder="Enter Your User ID (e.g. 1)">
+    <input type="text" id="userID" placeholder="Enter Your User ID">
     <br><button onclick="checkBill()">Check Bill Now</button>
     <div id="result"></div>
 </section>
 
-<!-- PACKAGES SECTION (Aapka Design Wapas Aa Gaya!) -->
+<!-- ASLI PACKAGES (WAPAS AA GAYE!) -->
 <section id="packages">
     <h2>Our Packages</h2>
     <div class="box">3 Mbps - Rs.1000/month</div>
+    <div class="box">4 Mbps - Rs.1200/month</div>
     <div class="box">5 Mbps - Rs.1500/month</div>
     <div class="box">10 Mbps - Rs.2200/month</div>
+    <div class="box">15 Mbps - Rs.2700/month</div>
     <div class="box">20 Mbps - Rs.3200/month</div>
+    <div class="box">25 Mbps - Rs.4500/month</div>
+    <div class="box">30 Mbps - Rs.5500/month</div>
 </section>
 
 <section>
@@ -64,7 +67,6 @@
     <div class="box">WiFi Installation</div>
 </section>
 
-<!-- COMPLAINT SECTION (WhatsApp Button Wapas Aa Gaya!) -->
 <section id="complaint">
     <h2>Complaint Form</h2>
     <input type="text" id="name" placeholder="Your Name">
@@ -75,7 +77,8 @@
 <section>
     <h2>Contact & Payment</h2>
     <p>📞 Complaint No: 0341-7625739</p>
-    <p>📍 Main Jhang Road, Bhowana</p>
+    <p>📧 aliasgharjoyia237@gmail.com</p>
+    <p>📍 Upper Floor Sharif Medicare, Near Honda Showroom, Main Jhang Road, Bhowana</p>
     <h3>💳 Easypaisa</h3>
     <p>Send payment to: 0346-7749237</p>
 </section>
@@ -103,18 +106,18 @@ async function checkBill() {
             const cols = rows[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
             if (cols[0] === userID) {
                 resultDiv.innerHTML = `
-                <div style="border:2px solid blue; padding:20px; border-radius:10px; background:#111; display:inline-block; text-align:left;">
+                <div style="border:2px solid blue; padding:20px; border-radius:10px; background:#111; display:inline-block; text-align:left; margin-top:10px;">
                     <h3 style="color:blue; margin-top:0;">Customer Found</h3>
                     <p><b>Name:</b> ${cols[1]}</p>
                     <p><b>NID:</b> ${cols[2]}</p>
-                    <p style="font-size:20px; color:lime;"><b>Bill: Rs. ${cols[4] || '1500'}</b></p>
+                    <p style="font-size:22px; color:lime;"><b>Bill: Rs. ${cols[4] || '1500'}</b></p>
                 </div>`;
                 found = true; break;
             }
         }
         if (!found) resultDiv.innerHTML = "<span style='color:red;'>User ID '" + userID + "' nahi mili!</span>";
     } catch (e) { 
-        resultDiv.innerHTML = "<span style='color:red;'>Connection Error! Browser refresh karein.</span>";
+        resultDiv.innerHTML = "<span style='color:red;'>Connection Error! Refresh karein.</span>";
     }
 }
 
