@@ -1,219 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-NET Bhowana Internet Services</title>
-
-<style>
-body {
-
-    font-family: Arial;
-    margin:0;
-    background:#000;
-    color:white;
-}
-
-/* Header */
-header {
-    background:#0a0a0a;
-    padding:25px;
-    text-align:center;
-    border-bottom:2px blue;
-}
-header h1 {
-    color:blue;
-    font-size:36px;
-    margin:0;
-}
-header p {
-    color:#ccc;
-}
-
-/* Navigation */
-nav {
-    background:#111;
-    padding:12px;
-    text-align:center;
-}
-nav a {
-    color:white;
-    margin:12px;
-    text-decoration:none;
-    font-weight:bold;
-}
-nav a:hover {
-    color:blue;
-}
-
-/* Sections */
-section {
-    padding:40px;
-    text-align:center;
-}
-
-/* Boxes */
-.box {
-    background:#111;
-    margin:15px;
-    padding:25px;
-    border-radius:10px;
-    border:1px dark blue;
-    transition:0.3s;
-}
-.box:hover {
-    transform:scale(1.05);
-    box-shadow:0 0 15px blue;
-}
-
-/* Inputs */
-input, textarea {
-    width:90%;
-    padding:12px;
-    margin:10px;
-    border:none;
-    border-radius:5px;
-}
-
-/* Button */
-button {
-    background:blue;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    cursor:pointer;
-    border-radius:5px;
-    font-weight:bold;
-}
-button:hover {
-    background:#0056b3;
-}
-
-/* Footer */
-footer {
-    background:#0a0a0a;
-    text-align:center;
-    padding:20px;
-    border-top:2px dark blue;
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-NET Bhowana</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; background:#000; color:white; text-align:center; }
+        header { background:#0a0a0a; padding:20px; border-bottom:2px solid blue; }
+        header h1 { color:blue; margin:0; }
+        section { padding:40px; }
+        input { width:80%; max-width:300px; padding:12px; margin:10px; border-radius:5px; border:none; background:#222; color:white; }
+        button { background:blue; color:white; border:none; padding:12px 25px; cursor:pointer; border-radius:5px; font-weight:bold; }
+        #result { margin-top: 20px; }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="logo.gif" alt="E NET BHOWANA" width="300">
-</header>
-<script>
-// Complaint WhatsApp
-function sendComplaint(){
-    var name = document.getElementById("name").value;
-    var msg = document.getElementById("msg").value;
 
-    var url = "https://wa.me/03467749237?text="
-        + "E-NET Bhowana Complaint%0A"
-        + "Name: " + name + "%0A"
-        + msg;
-
-    window.open(url, '_blank');
-}
-
-// Bill Check
-function checkBill(){
-    var id = document.getElementById("userID").value;
-    var result = document.getElementById("result");
-
-    if(id == "101"){
-        result.innerHTML = "E-NET Customer<br>Name: Ali<br>Package: 20 Mbps<br>Bill: Rs. 3200";
-    }
-    else if(id == "102"){
-        result.innerHTML = "E-NET Customer<br>Name: Ahmed<br>Package: 30 Mbps<br>Bill: Rs. 5500";
-    }
-    else{
-        result.innerHTML = "E-NET: User not found!";
-    }
-}
-</script>
-
-</head>
-
-<body>
-
-<header>
-    <h1>E-NET Bhowana</h1>
-    <p>High Speed Internet Service Provider</p>
-</header>
-
-<nav>
-    <a href="#">Home</a>
-    <a href="#">Packages</a>
-    <a href="#">Services</a>
-    <a href="#">Bill</a>
-    <a href="#">Complaint</a>
-</nav>
-
-<section>
-    <h2>Welcome to E-NET Bhowana</h2>
-    <p>Fast, Reliable & Affordable Internet in Your Area</p>
-</section>
-
-<section>    <h2>Our Packages</h2>
-    <div class="box">3 Mbps - Rs.1000/month</div>
-    <div class="box">4 Mbps - Rs.1200/month</div>
-    <div class="box">5 Mbps - Rs.1500/month</div>
-    <div class="box">10 Mbps - Rs.2200/month</div>
-    <div class="box">15Mbps - Rs.2700/month</div>
-    <div class="box">20 Mbps - Rs.3200/month</div>
-   <div class="box">25 Mbps - Rs.4500/month</div>
-    <div class="box">30 Mbps - Rs.5500/month</div>
-    <
-</section>
-
-<section>
-    <h2>Our Services</h2>
-    <div class="box">4G Internet</div>
-    <div class="box">5G High-Speed Internet</div>
-    <div class="box">WiFi Installation</div>
-</section>
+<header><h1>E-NET Bhowana</h1></header>
 
 <section>
     <h2>Check Your Bill</h2>
-    <input type="text" id="userID" placeholder="Enter Your User ID">
-    <button onclick="checkBill()">Check Bill</button>
+    <input type="text" id="userID" placeholder="Enter User ID (e.g. 1)">
+    <br><button onclick="checkBill()">Check Bill Now</button>
     <div id="result"></div>
 </section>
 
-<section>
-    <h2>Complaint Form</h2>
-    <input type="text" id="name" placeholder="Your Name">
-    <textarea id="msg" placeholder="Write your complaint"></textarea>
-    <button onclick="sendComplaint()">Send via WhatsApp</button>
-</section>
-
-<section>
-    <h2>Contact & Payment</h2>
-
-    <p>📞 Complaint No: 0341-7625739</p>
-    <p>📧 aliasgharjoyia237@gmail.com</p>
-    <p>📍 Upper Floor Sharif Medicare, Near Honda Showroom, Main Jhang Road, Bhowana</p>
-
-    <h3>💳 Easypaisa</h3>
-    <p>Send payment to: 0346-7749237</p>
-</section>
-
-<footer>
-    <p>© 2026 E-NET Bhowana Internet Services</p>
-</footer>
-
-
 <script>
-function sendviaWhatsapp() {
-    var name = document.getElementById("name").value;
-    var msg = document.getElementById("msg").value;
-    var phonenumber = "923467749237";
-    var url = "https://wa.me" + phonenumber + "?text=" 
-        + "*New Complaint*" + "%0a"
-        + "*Name:* " + name + "%0a"
-        + "*Message:* " + msg;
-    window.open(url, "_blank").focus();
+async function checkBill() {
+    const userID = document.getElementById("userID").value.trim();
+    const resultDiv = document.getElementById("result");
+    if(!userID) { resultDiv.innerHTML = "ID likhein!"; return; }
+    
+    resultDiv.innerHTML = "Searching...";
+
+    // New more reliable Link format
+    const sheetURL = "https://google.com";
+
+    try {
+        const response = await fetch(sheetURL);
+        if (!response.ok) throw new Error('Network response was not ok');
+        
+        const data = await response.text();
+        const rows = data.split('\n');
+        let found = false;
+
+        for (let i = 1; i < rows.length; i++) {
+            const cols = rows[i].split(',').map(c => c.replace(/"/g, '').trim());
+            if (cols[0] === userID) {
+                resultDiv.innerHTML = `
+                <div style="border:2px solid blue; padding:20px; border-radius:10px; background:#111; display:inline-block; text-align:left;">
+                    <p><b>Name:</b> ${cols[1]}</p>
+                    <p><b>NID:</b> ${cols[2]}</p>
+                    <p style="font-size:20px; color:lime;"><b>Bill: Rs. ${cols[4] || '1500'}</b></p>
+                </div>`;
+                found = true; break;
+            }
+        }
+        if (!found) resultDiv.innerHTML = "<span style='color:red;'>User ID nahi mili!</span>";
+    } catch (e) { 
+        resultDiv.innerHTML = "<span style='color:red;'>Connection Error! Laptop ka internet check karein.</span>";
+    }
 }
 </script>
 </body>
-</html> 
+</html>
