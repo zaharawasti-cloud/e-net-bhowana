@@ -1,53 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-NET Bhowana</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin:0; background:#000; color:white; text-align:center; }
-        header { background:#0a0a0a; padding:20px; border-bottom:2px solid blue; }
-        header h1 { color:blue; margin:0; }
-        section { padding:40px; }
-        input { width:80%; max-width:300px; padding:12px; margin:10px; border-radius:5px; border:none; background:#222; color:white; }
-        button { background:blue; color:white; border:none; padding:12px 25px; cursor:pointer; border-radius:5px; font-weight:bold; }
-        #result { margin-top: 20px; }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-NET Bhowana Internet Services</title>
+<style>
+    body { font-family: Arial; margin:0; background:#000; color:white; }
+    header { background:#0a0a0a; padding:25px; text-align:center; border-bottom:2px solid blue; }
+    header h1 { color:blue; font-size:36px; margin:0; }
+    header p { color:#ccc; }
+    nav { background:#111; padding:12px; text-align:center; }
+    nav a { color:white; margin:12px; text-decoration:none; font-weight:bold; }
+    nav a:hover { color:blue; }
+    section { padding:40px; text-align:center; }
+    .box { background:#111; margin:15px; padding:25px; border-radius:10px; border:1px solid #0056b3; transition:0.3s; }
+    .box:hover { transform:scale(1.05); box-shadow:0 0 15px blue; }
+    input, textarea { width:90%; max-width:400px; padding:12px; margin:10px; border:none; border-radius:5px; background:#222; color:white; }
+    button { background:blue; color:white; border:none; padding:12px 25px; cursor:pointer; border-radius:5px; font-weight:bold; }
+    button:hover { background:#0056b3; }
+    footer { background:#0a0a0a; text-align:center; padding:20px; border-top:2px solid #0056b3; }
+    #result { margin-top:20px; min-height:50px; }
+</style>
 </head>
 <body>
 
-<header><h1>E-NET Bhowana</h1></header>
+<header>
+    <h1>E-NET Bhowana</h1>
+    <p>High Speed Internet Service Provider</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#packages">Packages</a>
+    <a href="#bill">Check Bill</a>
+    <a href="#complaint">Complaint</a>
+</nav>
 
 <section>
+    <h2>Welcome to E-NET Bhowana</h2>
+    <p>Fast, Reliable & Affordable Internet in Your Area</p>
+</section>
+
+<!-- BILL SEARCH SECTION -->
+<section id="bill">
     <h2>Check Your Bill</h2>
-    <input type="text" id="userID" placeholder="Enter User ID (e.g. 1)">
+    <input type="text" id="userID" placeholder="Enter Your User ID (e.g. 1)">
     <br><button onclick="checkBill()">Check Bill Now</button>
     <div id="result"></div>
 </section>
+
+<!-- PACKAGES SECTION (Aapka Design Wapas Aa Gaya!) -->
+<section id="packages">
+    <h2>Our Packages</h2>
+    <div class="box">3 Mbps - Rs.1000/month</div>
+    <div class="box">5 Mbps - Rs.1500/month</div>
+    <div class="box">10 Mbps - Rs.2200/month</div>
+    <div class="box">20 Mbps - Rs.3200/month</div>
+</section>
+
+<section>
+    <h2>Our Services</h2>
+    <div class="box">4G Internet</div>
+    <div class="box">5G High-Speed Internet</div>
+    <div class="box">WiFi Installation</div>
+</section>
+
+<!-- COMPLAINT SECTION (WhatsApp Button Wapas Aa Gaya!) -->
+<section id="complaint">
+    <h2>Complaint Form</h2>
+    <input type="text" id="name" placeholder="Your Name">
+    <textarea id="msg" placeholder="Write your complaint"></textarea>
+    <br><button onclick="sendviaWhatsapp()">Send via WhatsApp</button>
+</section>
+
+<section>
+    <h2>Contact & Payment</h2>
+    <p>📞 Complaint No: 0341-7625739</p>
+    <p>📍 Main Jhang Road, Bhowana</p>
+    <h3>💳 Easypaisa</h3>
+    <p>Send payment to: 0346-7749237</p>
+</section>
+
+<footer>
+    <p>© 2026 E-NET Bhowana Internet Services</p>
+</footer>
 
 <script>
 async function checkBill() {
     const userID = document.getElementById("userID").value.trim();
     const resultDiv = document.getElementById("result");
     if(!userID) { resultDiv.innerHTML = "ID likhein!"; return; }
-    
     resultDiv.innerHTML = "Searching...";
 
-    // New more reliable Link format
     const sheetURL = "https://google.com";
 
     try {
-        const response = await fetch(sheetURL);
-        if (!response.ok) throw new Error('Network response was not ok');
-        
+        const response = await fetch(sheetURL + '&cachebuster=' + new Date().getTime());
         const data = await response.text();
         const rows = data.split('\n');
         let found = false;
 
         for (let i = 1; i < rows.length; i++) {
-            const cols = rows[i].split(',').map(c => c.replace(/"/g, '').trim());
+            const cols = rows[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
             if (cols[0] === userID) {
                 resultDiv.innerHTML = `
                 <div style="border:2px solid blue; padding:20px; border-radius:10px; background:#111; display:inline-block; text-align:left;">
+                    <h3 style="color:blue; margin-top:0;">Customer Found</h3>
                     <p><b>Name:</b> ${cols[1]}</p>
                     <p><b>NID:</b> ${cols[2]}</p>
                     <p style="font-size:20px; color:lime;"><b>Bill: Rs. ${cols[4] || '1500'}</b></p>
@@ -55,10 +112,17 @@ async function checkBill() {
                 found = true; break;
             }
         }
-        if (!found) resultDiv.innerHTML = "<span style='color:red;'>User ID nahi mili!</span>";
+        if (!found) resultDiv.innerHTML = "<span style='color:red;'>User ID '" + userID + "' nahi mili!</span>";
     } catch (e) { 
-        resultDiv.innerHTML = "<span style='color:red;'>Connection Error! Laptop ka internet check karein.</span>";
+        resultDiv.innerHTML = "<span style='color:red;'>Connection Error! Browser refresh karein.</span>";
     }
+}
+
+function sendviaWhatsapp() {
+    var name = document.getElementById("name").value;
+    var msg = document.getElementById("msg").value;
+    var url = "https://wa.me:* " + encodeURIComponent(name) + "%0a*Message:* " + encodeURIComponent(msg);
+    window.open(url, "_blank");
 }
 </script>
 </body>
