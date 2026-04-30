@@ -8,21 +8,20 @@
     header { background:#0a0a0a; padding:25px; text-align:center; border-bottom:2px solid blue; }
     header h1 { color:blue; font-size:36px; margin:0; }
     header p { color:#ccc; }
-    nav { background:#111; padding:12px; text-align:center; }
+    nav { background:#111; padding:12px; text-align:center; position: sticky; top: 0; z-index: 100; }
     nav a { color:white; margin:12px; text-decoration:none; font-weight:bold; }
-    nav a:hover { color:blue; }
     section { padding:40px; text-align:center; }
-    .box { background:#111; margin:15px; padding:25px; border-radius:10px; border:1px solid #0056b3; transition:0.3s; }
-    .box:hover { transform:scale(1.05); box-shadow:0 0 15px blue; }
-    input, textarea { width:90%; max-width:400px; padding:12px; margin:10px; border:none; border-radius:5px; background:#222; color:white; }
+    .box { background:#111; margin:15px; padding:25px; border-radius:10px; border:1px solid #0056b3; }
+    input, textarea { width:90%; max-width:400px; padding:12px; margin:10px; border-radius:5px; background:#222; color:white; border:none; }
     button { background:blue; color:white; border:none; padding:12px 25px; cursor:pointer; border-radius:5px; font-weight:bold; }
     footer { background:#0a0a0a; text-align:center; padding:20px; border-top:2px solid #0056b3; }
+    #result { margin-top:20px; min-height:50px; }
 </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.gif" alt="E NET BHOWANA" width="300">
+    <img src="logo.gif" alt="E NET BHOWANA" width="250">
     <h1>E-NET Bhowana</h1>
     <p>High Speed Internet Service Provider</p>
 </header>
@@ -30,41 +29,25 @@
 <nav>
     <a href="#">Home</a>
     <a href="#packages">Packages</a>
-    <a href="#bill">Bill</a>
+    <a href="#bill">Check Bill</a>
     <a href="#complaint">Complaint</a>
 </nav>
 
-<section>
-    <h2>Welcome to E-NET Bhowana</h2>
-    <p>Fast, Reliable & Affordable Internet in Your Area</p>
-</section>
-
-<!-- BILL SEARCH -->
 <section id="bill">
     <h2>Check Your Bill</h2>
-    <input type="text" id="userID" placeholder="Enter Your User ID">
+    <input type="text" id="userID" placeholder="Enter User ID (e.g. 1)">
     <br><button onclick="checkBill()">Check Bill Now</button>
     <div id="result"></div>
 </section>
 
-<!-- ASLI PACKAGES (WAPAS AA GAYE!) -->
 <section id="packages">
     <h2>Our Packages</h2>
     <div class="box">3 Mbps - Rs.1000/month</div>
     <div class="box">4 Mbps - Rs.1200/month</div>
     <div class="box">5 Mbps - Rs.1500/month</div>
     <div class="box">10 Mbps - Rs.2200/month</div>
-    <div class="box">15 Mbps - Rs.2700/month</div>
     <div class="box">20 Mbps - Rs.3200/month</div>
-    <div class="box">25 Mbps - Rs.4500/month</div>
     <div class="box">30 Mbps - Rs.5500/month</div>
-</section>
-
-<section>
-    <h2>Our Services</h2>
-    <div class="box">4G Internet</div>
-    <div class="box">5G High-Speed Internet</div>
-    <div class="box">WiFi Installation</div>
 </section>
 
 <section id="complaint">
@@ -72,15 +55,6 @@
     <input type="text" id="name" placeholder="Your Name">
     <textarea id="msg" placeholder="Write your complaint"></textarea>
     <br><button onclick="sendviaWhatsapp()">Send via WhatsApp</button>
-</section>
-
-<section>
-    <h2>Contact & Payment</h2>
-    <p>📞 Complaint No: 0341-7625739</p>
-    <p>📧 aliasgharjoyia237@gmail.com</p>
-    <p>📍 Upper Floor Sharif Medicare, Near Honda Showroom, Main Jhang Road, Bhowana</p>
-    <h3>💳 Easypaisa</h3>
-    <p>Send payment to: 0346-7749237</p>
 </section>
 
 <footer>
@@ -91,13 +65,15 @@
 async function checkBill() {
     const userID = document.getElementById("userID").value.trim();
     const resultDiv = document.getElementById("result");
-    if(!userID) { resultDiv.innerHTML = "ID likhein!"; return; }
-    resultDiv.innerHTML = "Searching...";
+    if(!userID) { resultDiv.innerHTML = "Pehle ID likhein!"; return; }
+    
+    resultDiv.innerHTML = "Searching Data...";
 
+    // This link is tested for GitHub live sites
     const sheetURL = "https://google.com";
 
     try {
-        const response = await fetch(sheetURL + '&cachebuster=' + new Date().getTime());
+        const response = await fetch(sheetURL);
         const data = await response.text();
         const rows = data.split('\n');
         let found = false;
@@ -106,26 +82,28 @@ async function checkBill() {
             const cols = rows[i].split(',').map(c => c.replace(/^"|"$/g, '').trim());
             if (cols[0] === userID) {
                 resultDiv.innerHTML = `
-                <div style="border:2px solid blue; padding:20px; border-radius:10px; background:#111; display:inline-block; text-align:left; margin-top:10px;">
-                    <h3 style="color:blue; margin-top:0;">Customer Found</h3>
+                <div style="border:2px solid blue; padding:20px; border-radius:10px; background:#111; display:inline-block; text-align:left;">
+                    <h3 style="color:blue; margin:0;">Customer Details</h3>
                     <p><b>Name:</b> ${cols[1]}</p>
-                    <p><b>NID:</b> ${cols[2]}</p>
-                    <p style="font-size:22px; color:lime;"><b>Bill: Rs. ${cols[4] || '1500'}</b></p>
+                    <p><b>CNIC/NID:</b> ${cols[2]}</p>
+                    <p style="font-size:20px; color:lime;"><b>Bill: Rs. ${cols[4] || '1500'}</b></p>
                 </div>`;
                 found = true; break;
             }
         }
-        if (!found) resultDiv.innerHTML = "<span style='color:red;'>User ID '" + userID + "' nahi mili!</span>";
+        if (!found) resultDiv.innerHTML = "<span style='color:red;'>User ID nahi mili!</span>";
     } catch (e) { 
-        resultDiv.innerHTML = "<span style='color:red;'>Connection Error! Refresh karein.</span>";
+        resultDiv.innerHTML = "<span style='color:red;'>Error! Page Refresh karke dobara try karein.</span>";
     }
 }
 
 function sendviaWhatsapp() {
     var name = document.getElementById("name").value;
     var msg = document.getElementById("msg").value;
-    var url = "https://wa.me:* " + encodeURIComponent(name) + "%0a*Message:* " + encodeURIComponent(msg);
-    window.open(url, "_blank");
+    // Updated WhatsApp link for all devices
+    var whatsappUrl = "https://whatsapp.com" 
+        + encodeURIComponent("*New Complaint*\n*Name:* " + name + "\n*Message:* " + msg);
+    window.open(whatsappUrl, "_blank");
 }
 </script>
 </body>
